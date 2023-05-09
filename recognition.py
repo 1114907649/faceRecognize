@@ -39,9 +39,11 @@ class Recognize:
         #img = img.resize(self.image_size)
         feat_img = self.extract_input_fl(img)
         similarity = np.dot(feat_img, self.feat_vis.T)
+        print(np.max(similarity))
         if np.max(similarity)>0.7:
             top_inds = np.argmax(similarity)
             return self.labels_vis[top_inds]
+        
         return -1
 
     def get(self, img):

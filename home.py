@@ -2,7 +2,8 @@ import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow,QFileDialog,QLabel,QVBoxLayout,QStackedWidget,QWidget,QFormLayout,QDesktopWidget
 from PyQt5.QtCore import QTimer
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtGui import QImage, QPixmap,QFont
+
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QPixmap, QPainter
 from PyQt5.QtSql import QSqlQuery
@@ -69,6 +70,11 @@ class Home(QtWidgets.QMainWindow,Ui_Home):
         self.recogniser = Recognize()
         self.detector = retinaface_dnn(align=True)
         self.face = None
+        self.label2 = QLabel(self.label)
+        font = QFont()
+        font.setBold(True)
+        font.setPointSize(50)
+        self.label2.setFont(font)
     def init(self):
         # 定时器让其定时读取显示图片
         self.camera_timer = QTimer()
@@ -227,15 +233,29 @@ class Home(QtWidgets.QMainWindow,Ui_Home):
                 if query.first():
                     username = query.value(2)
                     id =  query.value(3)
+                    
                     self.current_index.setStyleSheet("background-color: green")
+                    
                     self.current_index.setText(f'{id}{username}')
+                    
+                    
+                    self.label2.setGeometry(0, self.label.height() -80, self.label.width(), 80)
+                    self.label2.setStyleSheet('background-color: rgba(0, 255, 0, 50)')
+                    self.label2.setText(f'{id}{username}')
                 else:
                     self.current_index.setStyleSheet("background-color: red")
                     self.current_index.setText('陌生人')
-                print(face_id)
+                    
+                    self.label2.setGeometry(0, self.label.height() -80, self.label.width(), 80)
+                    self.label2.setStyleSheet('background-color: rgba(255, 0, 0, 50)')
+                    self.label2.setText(f'陌生人')
+                
         else:
             self.current_index.setStyleSheet("background-color: transparent")
             self.current_index.clear()
+
+            self.label2.setStyleSheet("background-color: transparent")
+            self.label2.clear()
                 
             
         width, height = image_show.shape[:2]  # 行:宽，列:高
