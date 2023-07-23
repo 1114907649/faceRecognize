@@ -221,13 +221,3 @@ class Ui_Form(object):
         self.prev_bt.setText(_translate("Form", "上一张"))
         self.next_bt.setText(_translate("Form", "下一张"))
         self.back_bt.setText(_translate("Form", "返回"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())

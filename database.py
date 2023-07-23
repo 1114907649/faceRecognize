@@ -1,8 +1,11 @@
+import pickle
 from PyQt5 import  QtWidgets
 from PyQt5.QtSql import QSqlQuery
+import numpy as np
 from UI.Ui_database import Ui_database
 from DB.UserDB import userDB
 from imageView import ImageView
+from feature.deleFt import deleF
 import os
 class Database(QtWidgets.QWidget,Ui_database):
     def __init__(self,home) :
@@ -94,6 +97,8 @@ class Database(QtWidgets.QWidget,Ui_database):
                 classname = query.value(0)
                 classnames.append(classname)
             self.class_box.addItems(classnames)
+        self.name_input.clear()
+        self.ID_input.clear()
     def classbox_change(self):
         if self.department_box.currentText()=='ALL':
             query = QSqlQuery()
@@ -111,7 +116,9 @@ class Database(QtWidgets.QWidget,Ui_database):
             if department :    
                 self.department_box.setCurrentText(department) 
                 self.departmentbox_change()
-                self.class_box.setCurrentText(classname)      
+                self.class_box.setCurrentText(classname)   
+        self.name_input.clear()
+        self.ID_input.clear()   
     def conbox_init(self):
         self.department_box.clear()
         self.class_box.clear()
@@ -192,6 +199,10 @@ class Database(QtWidgets.QWidget,Ui_database):
         #self.tableView.setModel(self.db.model)
         self.db.model.select()
     def back(self):
+        with open('feature/feature.pickle', 'rb') as f:
+            pids ,img_feats = pickle.load(f)
+        self.home.recogniser.labels_vis=pids
+        self.home.recogniser.feat_vis = img_feats
         self.home.stacked_widget.setCurrentWidget(self.home.screen)
     def delete_fc(self):
         selected_rows = self.tableView.selectionModel().selectedRows()
@@ -199,6 +210,7 @@ class Database(QtWidgets.QWidget,Ui_database):
             for row in sorted(selected_rows, reverse=True):
                 model = self.tableView.model()
                 num = model.data(model.index(row.row(), 3))
+                deleF(num)
                 self.delete_images(num)
                 self.tableView.model().removeRow(row.row())
         # 更新 QTableView 中的视图
@@ -207,6 +219,7 @@ class Database(QtWidgets.QWidget,Ui_database):
             model = self.tableView.model()
             num = model.data(model.index(row.row(), 3))
             self.delete_images(num)
+            deleF(num)
             self.tableView.model().removeRow(row.row())
         self.db.model.select()
         self.value = ''

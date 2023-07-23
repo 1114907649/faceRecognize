@@ -7,4 +7,5 @@ pids ,img_feats =[],[]
 with open('feature/feature.pickle', 'rb') as f:
     pids ,img_feats = pickle.load(f)
 
-print(pids)
+print(len(pids))
+print(len(img_feats))

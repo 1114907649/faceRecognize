@@ -1,26 +1,40 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QLabel, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget, QPushButton
 
-class MyWidget(QWidget):
+class MyApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUI()
 
     def initUI(self):
-        self.setGeometry(100, 100, 700, 700)
+        # 创建 Label 和 Button 组件
+        self.label = QLabel('Hello World!', self)
+        button = QPushButton('Click me', self)
+        button.clicked.connect(self.show_label)
 
-        # 创建一个 QLabel
-        self.label1 = QLabel(self)
-        self.label1.setGeometry(50, 50, 400, 400)
-        self.label1.setStyleSheet('background-color: yellow')
+        # 创建垂直布局管理器并向其中添加组件
+        vbox = QVBoxLayout()
+        vbox.addWidget(self.label)
+        vbox.addWidget(button)
 
-        # 在 label1 的区域 (50, 50, 100, 100) 放置另一个 QLabel
-        self.label2 = QLabel(self.label1)
-        self.label2.setGeometry(0, self.label1.height() -50, self.label1.width(), 50)
-        self.label2.setStyleSheet('background-color: rgba(0, 0, 255, 50)')
+        # 创建一个 QWidget 作为中心窗口部件，并将布局管理器应用于该 QWidget
+        central_widget = QWidget()
+        central_widget.setLayout(vbox)
+        self.setCentralWidget(central_widget)
+
+        # 隐藏所有组件
+        self.hide()
+
+        # 设置窗口属性
+        self.setGeometry(300, 300, 300, 200)
+        self.setWindowTitle('MyApp')
+
+    def show_label(self):
+        # 显示 Label 组件
+        self.label.show()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    w = MyWidget()
-    w.show()
+    ex = MyApp()
+    ex.show()  # 显示窗口
     sys.exit(app.exec_())

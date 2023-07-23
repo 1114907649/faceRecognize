@@ -115,7 +115,7 @@
              <item>
               <widget class="QLineEdit" name="name_input">
                <property name="text">
-                <string> </string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -148,7 +148,7 @@
              <item>
               <widget class="QLineEdit" name="ID_input">
                <property name="text">
-                <string> </string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -166,7 +166,7 @@
          <item>
           <layout class="QHBoxLayout" name="mid" stretch="1,9">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1,1">
+            <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1">
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_18">
                <item>
@@ -195,17 +195,6 @@
                 <widget class="QPushButton" name="delete_bt">
                  <property name="text">
                   <string>删除</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_16">
-               <item>
-                <widget class="QPushButton" name="back_bt_2">
-                 <property name="text">
-                  <string>返回</string>
                  </property>
                 </widget>
                </item>

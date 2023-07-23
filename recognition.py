@@ -134,10 +134,6 @@ class Recognize:
         with open('feature/feature.pickle', 'wb') as f:
             pickle.dump([self.labels_vis, self.feat_vis],f)
 
-
-    
-
-
 if __name__ == '__main__':
     img = cv2.imread('./ttt/s3_VIS_20432_005.jpg')
     rec = Recognize()

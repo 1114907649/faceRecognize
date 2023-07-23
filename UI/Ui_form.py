@@ -353,13 +353,3 @@ class Ui_Home(object):
         self.menushezhi.setTitle(_translate("Home", "设置"))
         self.load_images.setText(_translate("Home", "导入"))
         self.update_pw.setText(_translate("Home", "修改密码"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Home = QtWidgets.QMainWindow()
-    ui = Ui_Home()
-    ui.setupUi(Home)
-    Home.show()
-    sys.exit(app.exec_())

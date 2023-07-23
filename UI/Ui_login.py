@@ -105,13 +105,3 @@ class Ui_form(object):
         form.setWindowTitle(_translate("form", "Form"))
         self.label_2.setText(_translate("form", "段佳鑫"))
         self.login.setText(_translate("form", "登录"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    form = QtWidgets.QWidget()
-    ui = Ui_form()
-    ui.setupUi(form)
-    form.show()
-    sys.exit(app.exec_())

@@ -46,7 +46,7 @@ class Ui_form(object):
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_2)
         self.username = QtWidgets.QLineEdit(form)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.username.sizePolicy().hasHeightForWidth())
@@ -65,7 +65,7 @@ class Ui_form(object):
         self.label.setObjectName("label")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label)
         self.lineEdit = QtWidgets.QLineEdit(form)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEdit.sizePolicy().hasHeightForWidth())
@@ -118,13 +118,3 @@ class Ui_form(object):
         self.label.setText(_translate("form", "密码"))
         self.sure.setText(_translate("form", "确认"))
         self.back_bt.setText(_translate("form", "返回"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    form = QtWidgets.QWidget()
-    ui = Ui_form()
-    ui.setupUi(form)
-    form.show()
-    sys.exit(app.exec_())

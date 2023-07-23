@@ -14,7 +14,7 @@ conn = pymysql.connect(
 
 # 创建游标
 cursor = conn.cursor()
-
+print('yes')
 # 设置图片文件夹路径
 image_folder = './ttt'
 i=0

@@ -12,8 +12,7 @@ for filename in os.listdir(ui_folder):
         ui_path = os.path.join(ui_folder, filename)
         py_name = f"Ui_{os.path.splitext(filename)[0]}.py"
         py_path = os.path.join(py_folder, py_name)
-        command = ['pyuic5', '-x', ui_path, '-o', py_path]
-        # 运行命令
+        command = f"pyuic5 {ui_path} -o {py_path }"
         subprocess.run(command, check=True)
 
         print(f"{ui_path} -> {py_path}")
